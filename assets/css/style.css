@@ -1,0 +1,9 @@
+body {
+	font-size: 2em;
+}
+
+#theGame, #divResults {
+	display: none;
+	width: 50%;
+	margin: 0 auto;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trivia Game | Dan Meyer</title>
+    <!-- Stylesheets -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/reset.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="page-header">
+            <h1>Totally Trivial Trivia</h1>
+        </div>
+        <div>
+            <select name="trivia_category" class="form-control">
+                <option value="any">Any Category</option>
+                <option value="9">General Knowledge</option>
+                <option value="10">Entertainment: Books</option>
+                <option value="11">Entertainment: Film</option>
+                <option value="12">Entertainment: Music</option>
+                <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                <option value="14">Entertainment: Television</option>
+                <option value="15">Entertainment: Video Games</option>
+                <option value="16">Entertainment: Board Games</option>
+                <option value="17">Science &amp; Nature</option>
+                <option value="18">Science: Computers</option>
+                <option value="19">Science: Mathematics</option>
+                <option value="20">Mythology</option>
+                <option value="21">Sports</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="24">Politics</option>
+                <option value="25">Art</option>
+                <option value="26">Celebrities</option>
+                <option value="27">Animals</option>
+                <option value="28">Vehicles</option>
+                <option value="29">Entertainment: Comics</option>
+                <option value="30">Science: Gadgets</option>
+                <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+                <option value="32">Entertainment: Cartoon &amp; Animations</option>
+            </select>
+            <button id="btnStart">Start</button>
+        </div>
+        <div id="theGame">
+            <div class="timer">
+                Time Remaining <span class="time-remaining"></span> seconds.
+            </div>
+            <div class="panel panel-default text-left">
+                <div id="question" class="panel-heading">Question</div>
+                <div class="panel-body">
+                    <ul class="answers">
+                        <li>[A] <span id="answerA"></span></li>
+                        <li>[B] <span id="answerB"></span></li>
+                        <li>[C] <span id="answerC"></span></li>
+                        <li>[D] <span id="answerD"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="divResults">
+            <button id="btnRestart">Restart</button>
+            <div class="panel panel-default text-left">
+                <div id="question" class="panel-heading">Results</div>
+                <div class="panel-body">
+                    <p>Correct Answers: <span id="correct"></span></p>
+                    <p>Incorrect Answers: <span id="wrong"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/game.js"></script>
+</body>
+
+</html>
