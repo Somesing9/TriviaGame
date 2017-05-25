@@ -11,12 +11,13 @@ function Question(question, answerA, answerB, answerC, answerD, correctAnswer) {
 };
 
 var theGame = {
-    correct: 0, // Hold # of correct answers
-    wrong: 0, // Hold # of incorrect answers
-    count: 0, // Hold the # of the question we are on
-    timerCount: 10, // Keeps track of the time spent on current question
+    correct: 0,                 // Hold # of correct answers
+    wrong: 0,                   // Hold # of incorrect answers
+    missed: 0,                  // Hold # of questions missed due to time running out
+    count: 0,                   // Hold the # of the question we are on
+    timerCount: 10,             // Keeps track of the time spent on current question
     inProgress: false,
-    allowAnswer: false,	// Flag to keep user from selecting multiple answers for a question
+    allowAnswer: false,	        // Flag to keep user from selecting multiple answers for a question
     questionTimerID: null,
     questions: new Array(),
 
@@ -47,13 +48,10 @@ var theGame = {
 				case 4:
 					this.questions[i] = new Question(_question, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, _correctAnswer, "D");
 					break;
-        	}
-            
+        	}  
             // this.questions[i] = new Question(question, answerA, answerB, answerC, answerD, "A");
         }
-        // this.questions[0] = new Question("The Chihuahua is a breed of dog believed to originate from what country?", "Ireland", "Scotland", "Australia", "Mexico", "D");
-        // this.questions[1] = new Question("What is a group of whales called?", "Pod", "Herd", "School", "Family", "A");
-        // this.questions[2] = new Question("What is the proper term for a group of parrots?", "Pandemonium", "Flock", "Family", "School", "A");
+       
     },
 
     startGame: function() {
@@ -88,7 +86,11 @@ var theGame = {
 
         this.questions[this.count].answerGiven = userGuess;
 
-        if (this.questions[this.count].answerGiven === this.questions[this.count].correctAnswer) {
+        if (userGuess === "-1") {
+            $("#answer" + this.questions[this.count].correctAnswer).addClass("btn-success");
+            this.missed++;
+        }
+        else if (this.questions[this.count].answerGiven === this.questions[this.count].correctAnswer) {
             $("#answer" + userGuess).addClass("btn-success");
             // $("#answer" + userGuess).parent().addClass("bg-success");
             this.correct++;
@@ -123,6 +125,7 @@ var theGame = {
                 theGame.inProgress = false;
                 $("#correct").text(theGame.correct);
                 $("#wrong").text(theGame.wrong);
+                $("#missed").text(theGame.missed);
                 $("#divResults").show();
                 $("#theGame").hide();
 
@@ -147,7 +150,6 @@ $("#btnStart").on("click", function() {
 
 $("#btnRestart").on("click", function() {
 	theGame.count = 0;
-	// theGame.inProgress = true;
 	getQuestions();
 });
 
