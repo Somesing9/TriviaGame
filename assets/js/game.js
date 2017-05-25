@@ -129,7 +129,7 @@ $("#btnRestart").on("click", function() {
 });
 
 function getQuestions() {
-    var queryURL = "https://opentdb.com/api.php?amount=2&type=multiple";
+    var queryURL = "https://opentdb.com/api.php?amount=10&type=multiple";
 
     $.ajax({
         url: queryURL,
