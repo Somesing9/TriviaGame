@@ -126,10 +126,10 @@ var theGame = {
                 $("#correct").text(theGame.correct);
                 $("#wrong").text(theGame.wrong);
                 $("#missed").text(theGame.missed);
-                $("#divResults").show();
+                // $("#divResults").show();
+                $(".results").show();
                 $("#theGame").hide();
-
-
+                $("#options").show();
             }
         }, 2000);
 
@@ -137,15 +137,10 @@ var theGame = {
 };
 
 $("#btnStart").on("click", function() {
-    if (theGame.count === 0) {
-        // theGame.buildQuestionArray();
+    // if (theGame.count === 0) {
+        theGame.count = 0;
         getQuestions();
-    }
-    // theGame.inProgress = true;
-    // theGame.displayQuestion();
-    // theGame.startGame();
-    // $("#theGame").show();
-    // $("#btnStart").hide();
+    // }
 });
 
 $("#btnRestart").on("click", function() {
@@ -154,21 +149,26 @@ $("#btnRestart").on("click", function() {
 });
 
 function getQuestions() {
-    var queryURL = "https://opentdb.com/api.php?amount=10&type=multiple";
+    var category = $("#category").val();
+    var difficulty = $("#difficulty").val();
+
+    var queryURL = "https://opentdb.com/api.php?amount=10&type=multiple" +"&category=" + category + "&difficulty=" + difficulty;
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-        console.log(response);
+        // console.log(response);
         theGame.buildQuestionArray(response.results);
         theGame.inProgress = true;
         theGame.allowAnswer = true;
         theGame.displayQuestion();
         theGame.startGame();
+        $("#options").hide();
         $("#theGame").show();
-        $("#btnStart").hide();
-        $("#divResults").hide();
+        $(".results").hide();
+        // $("#btnStart").hide();
+        // $("#divResults").hide();
     });
 }
 
@@ -180,8 +180,8 @@ $(document).on("keyup", function(event) {
         var keypressed = event.which;
         if (keypressed >= 65 && keypressed <= 68) {
         	theGame.allowAnswer = false;
-            console.log(event.which);
-            console.log(event.keyCode);
+            // console.log(event.which);
+            // console.log(event.keyCode);
             switch (keypressed) {
                 case 65:
                     theGame.checkAnswer("A");
@@ -199,12 +199,11 @@ $(document).on("keyup", function(event) {
 
         } 
         else {
-            console.log("invalid key press");
-            console.log(keypressed);
+            // console.log("invalid key press");
+            // console.log(keypressed);
         }
     } 
     else {
-        // alert("Press start");
     }
 
 });

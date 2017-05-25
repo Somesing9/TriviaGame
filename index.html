@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trivia Game | Dan Meyer</title>
     <!-- Stylesheets -->
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/css/reset.css" rel="stylesheet">
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/css/style.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,71 +19,127 @@
 </head>
 
 <body>
-    <div class="container text-center">
-        <div class="page-header">
-            <h1>Totally Trivial Trivia</h1>
+    <div class="container">
+        <div class="row text-center">
+            <div class="page-header">
+                <h1>Totally Trivial Trivia</h1>
+            </div>
         </div>
-        <div>
-            <!-- <select name="trivia_category" class="form-control">
-                <option value="any">Any Category</option>
-                <option value="9">General Knowledge</option>
-                <option value="10">Entertainment: Books</option>
-                <option value="11">Entertainment: Film</option>
-                <option value="12">Entertainment: Music</option>
-                <option value="13">Entertainment: Musicals &amp; Theatres</option>
-                <option value="14">Entertainment: Television</option>
-                <option value="15">Entertainment: Video Games</option>
-                <option value="16">Entertainment: Board Games</option>
-                <option value="17">Science &amp; Nature</option>
-                <option value="18">Science: Computers</option>
-                <option value="19">Science: Mathematics</option>
-                <option value="20">Mythology</option>
-                <option value="21">Sports</option>
-                <option value="22">Geography</option>
-                <option value="23">History</option>
-                <option value="24">Politics</option>
-                <option value="25">Art</option>
-                <option value="26">Celebrities</option>
-                <option value="27">Animals</option>
-                <option value="28">Vehicles</option>
-                <option value="29">Entertainment: Comics</option>
-                <option value="30">Science: Gadgets</option>
-                <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
-                <option value="32">Entertainment: Cartoon &amp; Animations</option>
-            </select> -->
-            <button id="btnStart">Start</button>
+        <div id="options" class="row">
+            <div class="col-md-6 ">
+                <div class="panel panel-default options">
+                    <div class="panel-heading text-center">Options</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="trivia_category" class="form-control">
+                                <option value="">Any Category</option>
+                                <option value="9">General Knowledge</option>
+                                <option value="10">Entertainment: Books</option>
+                                <option value="11">Entertainment: Film</option>
+                                <option value="12">Entertainment: Music</option>
+                                <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                                <option value="14">Entertainment: Television</option>
+                                <option value="15">Entertainment: Video Games</option>
+                                <option value="16">Entertainment: Board Games</option>
+                                <option value="17">Science &amp; Nature</option>
+                                <option value="18">Science: Computers</option>
+                                <option value="19">Science: Mathematics</option>
+                                <option value="20">Mythology</option>
+                                <option value="21">Sports</option>
+                                <option value="22">Geography</option>
+                                <option value="23">History</option>
+                                <option value="24">Politics</option>
+                                <option value="25">Art</option>
+                                <option value="26">Celebrities</option>
+                                <option value="27">Animals</option>
+                                <option value="28">Vehicles</option>
+                                <option value="29">Entertainment: Comics</option>
+                                <option value="30">Science: Gadgets</option>
+                                <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+                                <option value="32">Entertainment: Cartoon &amp; Animations</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty</label>
+                            <select id="difficulty" class="form-control">
+                                <option value="">Difficulty</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button id="btnStart" type="submit" class="btn btn-success">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default text-left results">
+                    <div class="panel-heading text-center">Results</div>
+                    <div class="panel-body">
+                        <h3>Correct Answers: <span id="correct" class="label label-default"></span></h3>
+                        <h3>Incorrect Answers: <span id="wrong" class="label label-default"></span></h3>
+                        <h3>Missed due to time: <span id="missed" class="label label-default"></span></h3>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="theGame">
-            <div class="timer">
+        <div id="theGame" class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- <div class="timer">
                 Time Remaining <span class="time-remaining"></span> seconds.
-            </div>
-            <div class="panel panel-default text-left">
-                <div id="question" class="panel-heading">Question</div>
-                <div class="panel-body">
-                    <ul class="answers">
-<!--                         <li value="A">[A] <span id="answerA"></span></li>
-                        <li value="B">[B] <span id="answerB"></span></li>
-                        <li value="C">[C] <span id="answerC"></span></li>
-                        <li value="D">[D] <span id="answerD"></span></li> -->
-                        <li value="A">[A] <button id="answerA"></button></li>
-                        <li value="B">[B] <button id="answerB"></button></li>
-                        <li value="C">[C] <button id="answerC"></button></li>
-                        <li value="D">[D] <button id="answerD"></button></li>
-                    </ul>
+            </div> -->
+                <div class="panel panel-default text-center">
+                    <!-- <div class="timer panel-heading">
+                        Time Remaining <span class="time-remaining"></span> seconds.
+                    </div> -->
+                    <div id="question" class="panel-heading">Question</div>
+                    <div class="panel-body">
+                        <div class="timer">
+                            Time Remaining <span class="time-remaining"></span> seconds.
+                        </div>
+                        <ul class="answers">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <li value="A">[A]
+                                        <button id="answerA"></button>
+                                    </li>
+                                </div>
+                                <div class="col-md-6">
+                                    <li value="B">[B]
+                                        <button id="answerB"></button>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <li value="C">[C]
+                                        <button id="answerC"></button>
+                                    </li>
+                                </div>
+                                <div class="col-md-6">
+                                    <li value="D">[D]
+                                        <button id="answerD"></button>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="divResults">
-            <button id="btnRestart">Restart</button>
+        <!-- <div id="divResults" class="row">
             <div class="panel panel-default text-left">
-                <div id="question" class="panel-heading">Results</div>
+                <div class="panel-heading text-center">Results</div>
                 <div class="panel-body">
-                    <p>Correct Answers: <span id="correct"></span></p>
-                    <p>Incorrect Answers: <span id="wrong"></span></p>
-                    <p>Missed due to time: <span id="missed"></span></p> 
+                    <h3>Correct Answers: <span id="correct" class="label label-default"></span></h3>
+                    <h3>Incorrect Answers: <span id="wrong" class="label label-default"></span></h3>
+                    <h3>Missed due to time: <span id="missed" class="label label-default"></span></h3>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

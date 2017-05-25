@@ -1,11 +1,27 @@
-body {
-	font-size: 1.5em;
+html, body {
+	min-height: 100%;
 }
 
-#theGame, #divResults {
+body {
+	background: lightblue;
+}
+
+.page-header h1 {
+	font-size: 2em;
+}
+
+#theGame, #divResults, .results {
 	display: none;
-	/*width: 50%*/;
+}
+
+#options .panel-heading, #div-results .panel-heading {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+#btnStart {
 	margin: 0 auto;
+	font-size: 1.2em;
 }
 
 .bg-success {
@@ -17,5 +33,14 @@ body {
 .bg-danger {
 	background-color: red;
 	color: white;
+	font-weight: bold;
+}
+
+.options, .results {
+	min-height: 275px;
+}
+
+#question {
+	font-size: 1.4em;
 	font-weight: bold;
 }
