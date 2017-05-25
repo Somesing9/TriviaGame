@@ -1,9 +1,21 @@
 body {
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 #theGame, #divResults {
 	display: none;
 	width: 50%;
 	margin: 0 auto;
+}
+
+.bg-success {
+	background-color: green;
+	color: white;
+	font-weight: bold;
+}
+
+.bg-danger {
+	background-color: red;
+	color: white;
+	font-weight: bold;
 }

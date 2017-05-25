@@ -26,13 +26,30 @@ var theGame = {
     //     this.questions[2] = new Question("What is the proper term for a group of parrots?", "Pandemonium", "Flock", "Family", "School", "A");
     // },
     buildQuestionArray: function(response) {
+        
         for (var i = 0; i < response.length; i++) {
-            var question = response[i].question;
-            var answerA = response[i].correct_answer;
-            var answerB = response[i].incorrect_answers[0];
-            var answerC = response[i].incorrect_answers[1];
-            var answerD = response[i].incorrect_answers[2];
-            this.questions[i] = new Question(question, answerA, answerB, answerC, answerD, "A");
+        	var randomNumber = Math.floor(Math.random() * 4) + 1;	// Pick a random number 1-4 to be the correct answer
+        	var _question = response[i].question;
+            var _correctAnswer = response[i].correct_answer;
+            var incorrectAnswer1 = response[i].incorrect_answers[0];
+            var incorrectAnswer2 = response[i].incorrect_answers[1];
+            var incorrectAnswer3 = response[i].incorrect_answers[2];
+        	switch (randomNumber) {
+        		case 1:
+        			this.questions[i] = new Question(_question, _correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, "A");
+        			break;
+    			case 2:
+    				this.questions[i] = new Question(_question, incorrectAnswer1, _correctAnswer, incorrectAnswer2, incorrectAnswer3, "B");
+    				break;
+				case 3:
+					this.questions[i] = new Question(_question, incorrectAnswer1, incorrectAnswer2, _correctAnswer, incorrectAnswer3, "C");
+					break;
+				case 4:
+					this.questions[i] = new Question(_question, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, _correctAnswer, "D");
+					break;
+        	}
+            
+            // this.questions[i] = new Question(question, answerA, answerB, answerC, answerD, "A");
         }
         // this.questions[0] = new Question("The Chihuahua is a breed of dog believed to originate from what country?", "Ireland", "Scotland", "Australia", "Mexico", "D");
         // this.questions[1] = new Question("What is a group of whales called?", "Pod", "Herd", "School", "Family", "A");
@@ -72,15 +89,18 @@ var theGame = {
         this.questions[this.count].answerGiven = userGuess;
 
         if (this.questions[this.count].answerGiven === this.questions[this.count].correctAnswer) {
-            // $("#answer" + userGuess).addClass("text-success");
-            $("#answer" + userGuess).parent().addClass("bg-success");
+            $("#answer" + userGuess).addClass("btn-success");
+            // $("#answer" + userGuess).parent().addClass("bg-success");
             this.correct++;
             console.log("Correct: " + this.correct);
         } else {
-            // $("#answer" + userGuess).addClass("text-danger");
-            $("#answer" + userGuess).parent().addClass("bg-danger");
-            // $("#answer" + this.questions[this.count].correctAnswer).addClass("text-success");
-            $("#answer" + this.questions[this.count].correctAnswer).parent().addClass("bg-success");
+            // Using Buttons
+            $("#answer" + userGuess).addClass("btn-danger");
+            $("#answer" + this.questions[this.count].correctAnswer).addClass("btn-success");
+            
+            // Using links
+            // $("#answer" + userGuess).parent().addClass("bg-danger");
+            // $("#answer" + this.questions[this.count].correctAnswer).parent().addClass("bg-success");
             this.wrong++;
             console.log("Wrong: " + this.wrong);
         }
@@ -89,6 +109,9 @@ var theGame = {
             $(".answers li").each(function() {
                 // $(this).removeClass("text-success text-danger");
                 $(this).removeClass("bg-success bg-danger");
+            });
+            $(".answers li button").each(function() {
+                $(this).removeClass("btn-success btn-danger");
             });
             theGame.count++;
             if (theGame.count < theGame.questions.length) {
@@ -151,9 +174,10 @@ function getQuestions() {
 // Function to deal with user keypress for selecting an answer
 $(document).on("keyup", function(event) {
     if (theGame.inProgress && theGame.allowAnswer) {
-    	theGame.allowAnswer = false;
+    	
         var keypressed = event.which;
         if (keypressed >= 65 && keypressed <= 68) {
+        	theGame.allowAnswer = false;
             console.log(event.which);
             console.log(event.keyCode);
             switch (keypressed) {
@@ -182,3 +206,13 @@ $(document).on("keyup", function(event) {
     }
 
 });
+
+$(".answers li").on("click", function() {
+	if (theGame.inProgress && theGame.allowAnswer) {
+    	theGame.allowAnswer = false;
+        var value = $(this).attr("value");
+        theGame.checkAnswer(value);
+    } 
+});
+
+
